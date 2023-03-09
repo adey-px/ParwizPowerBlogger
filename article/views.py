@@ -44,24 +44,22 @@ def articles_list(request):
     Get all articles from db,
     last in first out, in pages.
     """
-    return HttpResponse('Hello from here...')
+    articles = Article.objects.all()[::-1]
+    paginator = Paginator(articles, 3)
+    page = request.GET.get("page")
 
-    # articles = Article.objects.all()[::-1]
-    # paginator = Paginator(articles, 3)
-    # page = request.GET.get("page")
+    try:
+        pagination = paginator.page(page)
 
-    # try:
-    #     pagination = paginator.page(page)
+    except PageNotAnInteger:
+        pagination = paginator.page(1)
 
-    # except PageNotAnInteger:
-    #     pagination = paginator.page(1)
+    except EmptyPage:
+        pagination = paginator.page(paginator.num_pages)
 
-    # except EmptyPage:
-    #     pagination = paginator.page(paginator.num_pages)
-
-    # return render(
-    #     request, "article/articles-list.html", {"articles": pagination, "page": page}
-    # )
+    return render(
+        request, "article/articles-list.html", {"articles": pagination, "page": page}
+    )
 
 
 # Article detail
