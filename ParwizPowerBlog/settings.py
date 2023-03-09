@@ -23,7 +23,10 @@ SECRET_KEY = "django-insecure-j&u9)ddfioi3sb(mvu-wz3v#vqzu2ti2weng0x$)zw7t!s(nib
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "localhost",
+    "parwizblog-env.eba-ctympm4m.us-east-1.elasticbeanstalk.com",
+]
 
 
 # Application definition
