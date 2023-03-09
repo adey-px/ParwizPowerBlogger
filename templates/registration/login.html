@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block extra_style %}
+  <style>
+    .non-empty {
+      color: orangered;
+    }
+  </style>
+{% endblock extra_style %}
+
+
+{% block extra_title %}
+  Login
+{% endblock extra_title %}
+
+
+{% block body_content %}
+  <div class="container">
+    <h3 class="text-center mt-5">
+      Login
+    </h3>
+
+    {% if form.errors %}
+      <p class="non-empty text-center">
+        Invalid username and/or password 
+      </p>
+    {% else %}
+      <p class="text-center">
+        Fill this form to login
+      </p>
+    {% endif %}
+    
+    <!-- login form -->
+    <div class="row">
+      <div class="col-md-3 offset-md-3 position-relative">
+        <form action="" method="post" novalidate>
+          {% csrf_token %}
+          {{ form | crispy }}
+          <div class="d-grid gap-2 col-12 mx-auto">
+            <input type="submit" value="Login" 
+              class="btn btn-success">
+          </div>
+        </form>
+      </div>
+   
+
+      <!-- login social media -->
+      <div class="col-md-3 offset-md-3 position-relative">
+        <div class="card">
+          <ul class="list-group list-group-flush">
+            <a href="">
+              <li class="list-group-item text-center">
+                An item
+              </li>
+            </a>
+            <a href="">
+              <li class="list-group-item text-center">
+                An item
+              </li>
+            </a>
+            <a href="">
+              <li class="list-group-item text-center">
+                An item
+              </li>
+            </a>
+            <a href="">
+              <li class="list-group-item text-center">
+                An item
+              </li>
+            </a>
+          </ul>
+        </div>
+      </div>
+    <div>
+  
+  </div>
+{% endblock body_content %}
+
+
+<!-- 
+crispy forms have built in form.errors 
+to handle field errors. form here is
+the form object from views.py
+-->

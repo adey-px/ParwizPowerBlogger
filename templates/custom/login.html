@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block extra_style %}
+{% endblock style %}
+
+
+{% block extra_title %}
+  Login
+{% endblock extra_title %}
+
+
+{% block body_content %}
+  <div class="container">
+    <h3 class="text-center mt-5">
+      Login
+    </h3>
+    <p class="text-center">
+      Fill this form to login
+    </p>
+
+    <div class="row mt-5">
+      <div class="col-md-6 offset-md-3 ">
+        <form action="" method="post" novalidate>
+          {{ form.as_p }}
+          {% csrf_token %}
+          <div class="d-grid gap-2 col-12 mx-auto">
+            <input type="submit" value="Login" 
+              class="btn btn-success">
+          </div>
+        </form>
+      </div> 
+    </div>
+  </div>
+{% endblock body_content %}
