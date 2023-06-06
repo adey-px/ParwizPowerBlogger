@@ -2,6 +2,8 @@
 .env
 .venv
 *.pyc
+*.sqlite3
+zeenote.md
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
