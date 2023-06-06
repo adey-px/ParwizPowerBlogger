@@ -19,8 +19,8 @@ urlpatterns = [
     path("update-article/<slug:slug>/", update_article, name="update-article"),
     path("delete-article/<slug:slug>/", delete_article, name="delete-article"),
     path("register/", register, name="register"),
-    # path("login/", user_login, name="user_login"),
     #
+    # path("login/", user_login, name="user_login"),
     path("login/", LoginView.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
     path("password-change/", PasswordChangeView.as_view(), name="password-change"),

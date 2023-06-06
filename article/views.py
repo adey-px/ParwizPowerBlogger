@@ -58,7 +58,12 @@ def articles_list(request):
         pagination = paginator.page(paginator.num_pages)
 
     return render(
-        request, "article/articles-list.html", {"articles": pagination, "page": page}
+        request,
+        "article/articles-list.html",
+        {
+            "articles": pagination,
+            "page": page,
+        },
     )
 
 
@@ -70,7 +75,12 @@ def article_detail(request, slug):
     slug for aricle instance is created in signals.
     """
     article = get_object_or_404(Article, slug=slug)
-    return render(request, "article/article-detail.html", {"article": article})
+    
+    return render(
+        request,
+        "article/article-detail.html",
+        {"article": article},
+    )
 
 
 # Update article
@@ -80,13 +90,20 @@ def update_article(request, slug):
     View to update article
     """
     article = get_object_or_404(Article, slug=slug)
-    form = UpdateArticleForm(request.POST or None, instance=article)
+    form = UpdateArticleForm(
+        request.POST or None,
+        instance=article,
+    )
 
     if form.is_valid():
         article.save()
         return redirect("articles-list")
 
-    return render(request, "article/article-update.html", {"form": form})
+    return render(
+        request,
+        "article/article-update.html",
+        {"form": form},
+    )
 
 
 # Delete article
@@ -136,7 +153,9 @@ def user_login(request):
         if form.is_valid():
             cd = form.cleaned_data
             user = authenticate(
-                request, username=cd["username"], password=cd["password"]
+                request,
+                username=cd["username"],
+                password=cd["password"],
             )
             # allow login, if details are valid
             if user is not None:
@@ -146,4 +165,9 @@ def user_login(request):
             return HttpResponse("Incorrect username and/or password")
     else:
         form = LoginForm()
-    return render(request, "custom/login.html", {"form": form})
+
+    return render(
+        request,
+        "custom/login.html",
+        {"form": form},
+    )

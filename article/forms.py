@@ -47,15 +47,25 @@ class RegisterForm(forms.ModelForm):
     """
 
     # create & confirm password fields manually
-    password = forms.CharField(label="Password", widget=forms.PasswordInput)
+    password = forms.CharField(
+        label="Password",
+        widget=forms.PasswordInput,
+    )
+    
     conf_password = forms.CharField(
-        label="Confirm Password", widget=forms.PasswordInput
+        label="Confirm Password",
+        widget=forms.PasswordInput,
     )
 
     # select other fields using User model
     class Meta:
         model = User
-        fields = ("first_name", "last_name", "username", "email")
+        fields = (
+            "first_name",
+            "last_name",
+            "username",
+            "email",
+        )
 
     # clean data, check password fields
     def clean_conf_password(self):
